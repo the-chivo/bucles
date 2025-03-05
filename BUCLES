@@ -1,0 +1,30 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class lootrobucle : MonoBehaviour
+{
+    // Start is called before the first frame update
+    [SerializeField] GameObject sphere;
+    [SerializeField] int amount;
+    [SerializeField]  float timeBetwenSpawns;
+    [SerializeField] int changueStart;
+    Vector3 position = Vector3.zero;
+
+    void Start()
+    {
+        StartCoroutine(InstanciateOverTime());
+       
+    }
+
+    IEnumerator InstanciateOverTime() 
+    { 
+        for(int i  = changueStart; i < amount; i++)
+        {
+            for(int j = changueStart; j < amount; j++)
+            {
+                GameObject.Instantiate(sphere, position = new Vector3(i,j,0), Quaternion.identity);
+            }
+            yield return new WaitForSeconds(timeBetwenSpawns);
+        }
+    }
